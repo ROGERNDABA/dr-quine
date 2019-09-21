@@ -1,31 +1,15 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
 
-/* function to read each line and print it */
+/*
+	test
+*/
 
-void get_file_lines(char *line, size_t len, FILE *fp)
-{
-	ssize_t read;
-	while ((read = getline(&line, &len, fp)) != -1)
-	{
-		printf("%s", line);
-	}
-}
+void print(char *s){printf(s,10,9,34,s);};
 
-int main(void)
-{
-	FILE *fp;
-	char *line = NULL;
-	size_t len = 0;
-
-	/* open Colleen.c file in read-only mode */
-	fp = fopen("Colleen.c", "r");
-	if (fp == NULL)
-		exit(EXIT_FAILURE);
-	get_file_lines(line, len, fp);
-	fclose(fp);
-	if (line)
-		free(line);
-	exit(EXIT_SUCCESS);
+int main(void){
+	/*
+		inside
+	*/
+	char *s="#include <stdio.h>%1$c%1$c/*%1$c%2$ctest%1$c*/%1$c%1$cvoid print(char *s){printf(s,10,9,34,s);};%1$c%1$cint main(void){%1$c%2$c/*%1$c%2$c%2$cinside%1$c%2$c*/%1$c%2$cchar *s=%3$c%4$s%3$c;%1$c%2$cprint(s);%1$c}%1$c";
+	print(s);
 }
