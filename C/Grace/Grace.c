@@ -1,24 +1,9 @@
 #include <stdio.h>
 
-/* buffer size for the popen */
+/* comment */
 
-#define BUFF_SIZE 48
-#define PRINT(buffer, fp)                            \
-	if (fp != NULL)                                  \
-	{                                                \
-		while (fgets(buffer, BUFF_SIZE, fp) != NULL) \
-			printf("%s", buffer);                    \
-		pclose(fp);                                  \
-	}
+#define STR "#include <stdio.h>%1$c%1$c/* comment */%1$c%1$c#define STR %2$c%3$s%2$c%1$c#define PRINTER(f) fprintf(f,STR,10,34,STR)%1$c#define RUN() int main(){ FILE*f = fopen(%2$cGrace_kid.c%2$c, %2$cw%2$c); PRINTER(f); return 0;}%1$c%1$cRUN()%1$c"
+#define PRINTER(f) fprintf(f,STR,10,34,STR)
+#define RUN() int main(){ FILE*f = fopen("Grace_kid.c", "w"); PRINTER(f); return 0;}
 
-#define GRACE()                                       \
-	int main()                                        \
-	{                                                 \
-		FILE *fp;                                     \
-		char buffer[BUFF_SIZE];                       \
-		fp = popen("cat Grace.c > Grace_kid.c", "r"); \
-		PRINT(buffer, fp);                            \
-		return 0;                                     \
-	}
-
-GRACE()
+RUN()
